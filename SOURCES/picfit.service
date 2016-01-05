@@ -1,0 +1,13 @@
+[Unit]
+Description=picfit
+After=syslog.target
+
+[Service]
+WorkingDirectory=/opt/picfit
+ExecStart=/opt/picfit/picfit -c /opt/picfit/config.json
+Restart=on-failure
+StandardError=null
+StandardOutput=null
+
+[Install]
+WantedBy=multi-user.target
