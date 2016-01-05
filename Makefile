@@ -5,7 +5,7 @@ NAME=picfit
 SPEC=$(shell /opt/buildhelper/buildhelper getspec ${NAME})
 ARCH=$(shell /opt/buildhelper/buildhelper getarch)
 OS_RELEASE=$(shell /opt/buildhelper/buildhelper getosrelease)
-GOPATH=${HOME}/SOURCES/
+export GOPATH=${HOME}/SOURCES/
 
 all: build
 
