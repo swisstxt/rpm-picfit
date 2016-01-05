@@ -14,7 +14,7 @@ clean:
 	rm -rf ./SOURCES/src ./SOURCES/bin ./SOURCES/lib
 	rm -rf ./SOURCES/picfit.bin
 	mkdir -p ./rpmbuild/SPECS/ ./rpmbuild/SOURCES/
-	mkdir -p ./SPECS ./SOURCES/src ./SOURCES/bin ./SOURCES/lib
+	mkdir -p ./SPECS ./SOURCES/src ./SOURCES/bin ./SOURCES/pkg
 
 
 get-thirdparty:
@@ -22,7 +22,7 @@ get-thirdparty:
 	go get github.com/thoas/picfit
 
 tidy-thirdparty:
-	rm -rf ./SOURCES/src ./SOURCES/bin ./SOURCES/lib
+	rm -rf ./SOURCES/src ./SOURCES/bin ./SOURCES/pkg
 
 build-thirdparty: get-thirdparty
 	cd ./SOURCES/src/github.com/thoas/picfit; make build
