@@ -6,6 +6,7 @@ SPEC=$(shell /opt/buildhelper/buildhelper getspec ${NAME})
 ARCH=$(shell /opt/buildhelper/buildhelper getarch)
 OS_RELEASE=$(shell /opt/buildhelper/buildhelper getosrelease)
 export GOPATH=${HOME}/SOURCES/
+export PATH :=${GOPATH}/bin/:$(PATH)
 
 all: build
 
@@ -15,7 +16,7 @@ clean:
 	rm -rf ./SOURCES/picfit.bin
 	mkdir -p ./rpmbuild/SPECS/ ./rpmbuild/SOURCES/
 	mkdir -p ./SPECS ./SOURCES/src ./SOURCES/bin ./SOURCES/pkg
-
+	go get github.com/tools/godep golang.org/x/image/bmp github.com/stretchr/testify
 
 get-thirdparty:
 	echo ${GOPATH}
@@ -25,8 +26,8 @@ tidy-thirdparty:
 	rm -rf ./SOURCES/src ./SOURCES/bin ./SOURCES/pkg
 
 build-thirdparty: get-thirdparty
-	cd ./SOURCES/src/github.com/thoas/picfit; make build
-	cp ./SOURCES/src/github.com/thoas/picfit/bin/picfit ./SOURCES/picfit.bin
+	cd ./SOURCES/src/github.com/thoas/picfit; godep restore; godep go install
+	cp ./SOURCES/bin/picfit ./SOURCES/picfit.bin
 
 build: clean build-thirdparty tidy-thirdparty
 	cp -r ./SPECS/* ./rpmbuild/SPECS/ || true
