@@ -11,7 +11,7 @@ all: build
 
 clean:
 	rm -rf ./rpmbuild
-	rm -rf ./SOURCES/picfit
+	rm -rf ./SOURCES/src ./SOURCES/bin ./SOURCES/lib
 	rm -rf ./SOURCES/picfit.bin
 	mkdir -p ./rpmbuild/SPECS/ ./rpmbuild/SOURCES/
 	mkdir -p ./SPECS ./SOURCES/src ./SOURCES/bin ./SOURCES/lib
@@ -19,14 +19,14 @@ clean:
 
 get-thirdparty:
 	echo ${GOPATH}
-	git clone https://github.com/thoas/picfit ./SOURCES/picfit
+	go get https://github.com/thoas/picfit
 
 tidy-thirdparty:
-	rm -rf ./SOURCES/picfit
+	rm -rf ./SOURCES/src ./SOURCES/bin ./SOURCES/lib
 
 build-thirdparty: get-thirdparty
-	cd ./SOURCES/picfit; make build
-	cp ./SOURCES/picfit/picfit ./SOURCES/picfit.bin
+	cd ./SOURCES/src/github.com/thoas/picfit; make build
+	cp ./SOURCES/src/github.com/thoas/picfit/bin/picfit ./SOURCES/picfit.bin
 
 build: clean build-thirdparty tidy-thirdparty
 	cp -r ./SPECS/* ./rpmbuild/SPECS/ || true
