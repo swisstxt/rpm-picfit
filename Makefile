@@ -19,7 +19,7 @@ clean:
 
 get-thirdparty:
 	echo ${GOPATH}
-	go get https://github.com/thoas/picfit
+	go get github.com/thoas/picfit
 
 tidy-thirdparty:
 	rm -rf ./SOURCES/src ./SOURCES/bin ./SOURCES/lib
