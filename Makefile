@@ -5,6 +5,7 @@ NAME=picfit
 SPEC=$(shell /opt/buildhelper/buildhelper getspec ${NAME})
 ARCH=$(shell /opt/buildhelper/buildhelper getarch)
 OS_RELEASE=$(shell /opt/buildhelper/buildhelper getosrelease)
+GOPATH=$HOME/SOURES
 
 all: build
 
@@ -16,6 +17,7 @@ clean:
 	mkdir -p ./SPECS ./SOURCES
 
 get-thirdparty:
+	echo $GOPATH
 	git clone https://github.com/thoas/picfit ./SOURCES/picfit
 
 tidy-thirdparty:
