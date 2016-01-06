@@ -8,6 +8,7 @@ ExecStart=/opt/picfit/picfit -c /opt/picfit/config.json
 Restart=on-failure
 StandardError=null
 StandardOutput=null
+User=picfit
 
 [Install]
 WantedBy=multi-user.target
