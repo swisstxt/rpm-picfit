@@ -27,7 +27,7 @@ picfit for RHEL/CENTOS %{os_rel}
 
 %pre
 /usr/bin/getent group %{name} || /usr/sbin/groupadd -r %{name}
-/usr/bin/getent passwd %{name} || /usr/sbin/useradd -r -d %{appdir} -s /sbin/nologin %{name}
+/usr/bin/getent passwd %{name} || /usr/sbin/useradd -g %{name} -r -d %{appdir} -s /sbin/nologin %{name}
 
 %install
 rm -rf $RPM_BUILD_ROOT
